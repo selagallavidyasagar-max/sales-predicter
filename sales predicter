@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Business Predictor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      margin-top: 10px;
+      display: block;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e9f5ff;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>AI Sales Predictor</h2>
+
+  <label>Product Price (₹)</label>
+  <input type="number" id="price">
+
+  <label>Demand Level</label>
+  <select id="demand">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+
+  <label>Season</label>
+  <select id="season">
+    <option value="normal">Normal</option>
+    <option value="festival">Festival</option>
+    <option value="off">Off-season</option>
+  </select>
+
+  <button onclick="predictSales()">Predict Sales</button>
+
+  <div class="result" id="result">Result will appear here</div>
+</div>
+
+<script>
+function predictSales() {
+  let price = document.getElementById("price").value;
+  let demand = document.getElementById("demand").value;
+  let season = document.getElementById("season").value;
+
+  let score = 0;
+
+  // AI Logic (simple rules)
+  if (price < 500) score += 30;
+  else if (price < 1000) score += 20;
+  else score += 10;
+
+  if (demand === "high") score += 40;
+  else if (demand === "medium") score += 25;
+  else score += 10;
+
+  if (season === "festival") score += 30;
+  else if (season === "normal") score += 20;
+  else score += 5;
+
+  let resultText = "";
+
+  if (score > 80) resultText = "🔥 High Sales Expected!";
+  else if (score > 50) resultText = "📈 Moderate Sales";
+  else resultText = "⚠️ Low Sales";
+
+  document.getElementById("result").innerText = resultText;
+}
+</script>
+
+</body>
+</html>
